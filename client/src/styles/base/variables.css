@@ -1,0 +1,78 @@
+/* ============================================================
+   DESIGN TOKENS – Neo-Brutalism Design System
+   מקור יחיד לכל הצבעים, הצללים, הרדיוסים והגופנים באתר.
+   כל הסטיילים האחרים (עמודים/קומפוננטות) משתמשים במשתנים האלה
+   כדי לשמור על קו עיצובי אחיד בכל האפליקציה.
+   ============================================================ */
+
+:root {
+  /* ── Palette ──────────────────────────────────────────── */
+  --nb-yellow:    #FFE135;
+  --nb-coral:     #FF6B6B;
+  --nb-mint:      #4ECDC4;
+  --nb-lavender:  #C9B8FF;
+  --nb-peach:     #FFB347;
+  --nb-lime:      #B8F0A0;
+  --nb-sky:       #A8DAFF;
+  --nb-black:     #1A1A2E;
+  --nb-white:     #FFFEF7;
+  --nb-gray:      #F4F3EE;
+
+  /* ── Borders & Shadows ────────────────────────────────── */
+  --nb-border:    3px solid #1A1A2E;
+  --nb-border-2:  2px solid #1A1A2E;
+  --nb-shadow-sm: 3px 3px 0px #1A1A2E;
+  --nb-shadow:    5px 5px 0px #1A1A2E;
+  --nb-shadow-lg: 8px 8px 0px #1A1A2E;
+
+  /* ── Radius & Typography ──────────────────────────────── */
+  --nb-radius:    12px;
+  --nb-radius-lg: 16px;
+  --nb-font:      'Trebuchet MS', 'Segoe UI', system-ui, sans-serif;
+
+  /* ── Semantic tokens (שמות כלליים בהם משתמשים קבצי עמודים) ── */
+  --sans:         var(--nb-font);
+  --text:         var(--nb-black);
+  --text-h:       var(--nb-black);
+  --text-muted:   #555555;
+  --text-light:   #888888;
+  --bg:           var(--nb-white);
+  --surface:      #ffffff;
+  --border:       var(--nb-black);
+
+  --accent:       var(--nb-yellow);
+  --accent-dark:  #e6c800;
+  --accent-bg:    rgba(255, 225, 53, 0.22);
+  --accent-border:var(--nb-yellow);
+
+  --shadow:       var(--nb-shadow);
+  --shadow-sm:    var(--nb-shadow-sm);
+  --shadow-lg:    var(--nb-shadow-lg);
+
+  --danger:       #E24B4A;
+  --danger-light: #FCEBEB;
+  --warning:      #EF9F27;
+
+  /* ── Legacy aliases (places.css וקבצים נוספים) ───────────── */
+  --places-accent:        var(--nb-mint);
+  --places-accent-light:  #e0faf8;
+  --places-accent-dark:   #2a9d95;
+  --places-danger:        var(--danger);
+  --places-danger-light:  var(--danger-light);
+  --places-warning:       var(--warning);
+  --places-surface:       var(--nb-white);
+  --places-bg:            var(--nb-gray);
+  --places-border:        rgba(0, 0, 0, 0.12);
+  --places-border-strong: rgba(0, 0, 0, 0.22);
+  --places-text:          var(--nb-black);
+  --places-text-muted:    var(--text-muted);
+  --places-text-light:    var(--text-light);
+  --places-radius-sm:     6px;
+  --places-radius-md:     10px;
+  --places-radius-lg:     var(--nb-radius);
+  --places-radius-xl:     var(--nb-radius-lg);
+  --places-shadow-sm:     var(--nb-shadow-sm);
+  --places-shadow-md:     var(--nb-shadow);
+  --places-shadow-lg:     var(--nb-shadow-lg);
+  --places-transition:    all 0.15s ease;
+}

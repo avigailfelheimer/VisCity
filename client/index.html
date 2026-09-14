@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VisiCity - גלו את העיר שלכם</title>
+
+  <!-- Google Maps + Places API -->
+  <script>
+    // נקרא ע"י Google Maps כשיש כשל אימות/הרשאות (כולל "Billing not enabled").
+    // נסמן דגל גלובלי וניירה אירוע כדי שהקומפוננטות יוכלו להציג חלופה נקייה
+    // במקום הדיאלוג השבור של גוגל.
+    window.__GMAPS_AUTH_FAILED__ = false;
+    window.gm_authFailure = function () {
+      window.__GMAPS_AUTH_FAILED__ = true;
+      window.dispatchEvent(new CustomEvent('gmaps-auth-failure'));
+    };
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMaxipvGvwWSxRGY4UqhrJ6qGA6jpwRG8&libraries=places&loading=async"
+    async defer></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>

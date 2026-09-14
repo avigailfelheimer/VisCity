@@ -1,0 +1,125 @@
+/* ============================================================
+   ERROR PAGE (404 / 403 / 500)
+   Neo-Brutalism Design System | RTL-first
+   ============================================================ */
+
+.error-page {
+  min-height: 100svh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  position: relative;
+  background: var(--nb-sky);
+  font-family: var(--nb-font);
+  direction: rtl;
+}
+
+.error-card {
+  width: 100%;
+  max-width: 560px;
+  background: var(--nb-white);
+  border: var(--nb-border);
+  border-radius: var(--nb-radius-lg);
+  box-shadow: var(--nb-shadow-lg);
+  padding: 3rem 2.5rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  animation: errorCardIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.error-card .emoji {
+  display: inline-block;
+  font-size: 4.5rem;
+  line-height: 1;
+  animation: spinCompass 8s linear infinite;
+}
+
+.error-card h1 {
+  font-size: 5.5rem;
+  font-weight: 900;
+  margin: 0.5rem 0 0;
+  color: var(--nb-coral);
+  letter-spacing: -2px;
+  -webkit-text-stroke: 3px var(--nb-black);
+}
+
+.error-card h2 {
+  font-size: 1.6rem;
+  font-weight: 900;
+  margin: 0.5rem 0;
+  color: var(--nb-black);
+}
+
+.error-card p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+}
+
+.home-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--nb-black);
+  color: var(--nb-yellow);
+  border: var(--nb-border);
+  border-radius: var(--nb-radius);
+  padding: 0.85rem 1.8rem;
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: var(--nb-shadow);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.home-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--nb-shadow-lg);
+}
+
+/* ── Decorative mountains ── */
+.mountain {
+  position: absolute;
+  bottom: -2px;
+  width: 0;
+  height: 0;
+  z-index: 1;
+  filter: drop-shadow(0 -3px 0 var(--nb-black));
+}
+
+.mountain-1 {
+  left: -60px;
+  border-left: 220px solid transparent;
+  border-right: 220px solid transparent;
+  border-bottom: 320px solid var(--nb-mint);
+}
+
+.mountain-2 {
+  right: -90px;
+  border-left: 280px solid transparent;
+  border-right: 280px solid transparent;
+  border-bottom: 400px solid var(--nb-lavender);
+}
+
+@keyframes spinCompass {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes errorCardIn {
+  from { opacity: 0; transform: scale(0.92) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .error-card { padding: 2.25rem 1.5rem; }
+  .error-card h1 { font-size: 4rem; }
+  .error-card h2 { font-size: 1.25rem; }
+  .error-card .emoji { font-size: 3.5rem; }
+  .mountain-1, .mountain-2 { display: none; }
+}

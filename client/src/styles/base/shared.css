@@ -1,0 +1,215 @@
+/* ============================================================
+   SHARED UI PRIMITIVES – Neo-Brutalism Design System
+   קלאסים גלובליים המשמשים יותר מעמוד אחד: כפתורים, ספינרים,
+   מצבי טעינה/שגיאה/ריק, דירוג כוכבים ואוטיליטיז כלליים.
+   נטען גלובלית דרך index.css כדי שיהיה זמין בכל עמוד,
+   בלי תלות בטעינה "אגבית" של styles/pages/places.css.
+   ============================================================ */
+
+/* ── Utilities ───────────────────────────────────────────── */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn-primary {
+  background: var(--nb-black);
+  color: var(--nb-yellow);
+  border: var(--nb-border);
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--nb-radius);
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  font-family: var(--nb-font);
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  white-space: nowrap;
+  box-shadow: var(--nb-shadow-sm);
+  text-decoration: none;
+}
+.btn-primary:hover { transform: translate(-2px,-2px); box-shadow: var(--nb-shadow); }
+.btn-primary:active { transform: none; box-shadow: var(--nb-shadow-sm); }
+.btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.btn-secondary {
+  background: var(--nb-white);
+  color: var(--nb-black);
+  border: var(--nb-border);
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--nb-radius);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  font-family: var(--nb-font);
+  box-shadow: var(--nb-shadow-sm);
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+}
+.btn-secondary:hover { transform: translate(-2px,-2px); box-shadow: var(--nb-shadow); }
+.btn-secondary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.btn-danger {
+  background: var(--nb-coral);
+  color: #fff;
+  border: var(--nb-border);
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--nb-radius);
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  font-family: var(--nb-font);
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  white-space: nowrap;
+  box-shadow: var(--nb-shadow-sm);
+  text-decoration: none;
+}
+.btn-danger:hover { transform: translate(-2px,-2px); box-shadow: var(--nb-shadow); }
+.btn-danger:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.btn-show-more {
+  background: var(--nb-yellow);
+  color: var(--nb-black);
+  border: var(--nb-border-2);
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  font-family: var(--nb-font);
+  box-shadow: 2px 2px 0 var(--nb-black);
+}
+.btn-show-more:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--nb-black); }
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--nb-white);
+  color: var(--nb-black);
+  border: var(--nb-border);
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--nb-radius);
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  font-family: var(--nb-font);
+  margin-bottom: 1.5rem;
+  box-shadow: var(--nb-shadow-sm);
+  text-decoration: none;
+}
+.btn-back:hover { transform: translate(-2px,-2px); box-shadow: var(--nb-shadow); }
+
+/* ── Loading / Empty / Error states ──────────────────────── */
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.places-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.places-spinner,
+.profile-spinner {
+  width: 40px; height: 40px;
+  border: 4px solid var(--nb-yellow);
+  border-top-color: var(--nb-black);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.loading-spinner::before {
+  content: '';
+  width: 32px; height: 32px;
+  border: 4px solid var(--nb-yellow);
+  border-top-color: var(--nb-black);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-left: 0.75rem;
+}
+
+.places-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--nb-gray);
+  border: var(--nb-border);
+  border-radius: var(--nb-radius-lg);
+  box-shadow: var(--nb-shadow);
+  color: var(--text-muted);
+}
+
+.places-empty .empty-icon { font-size: 3.5rem; margin-bottom: 1rem; display: block; }
+.places-empty p { font-size: 1rem; font-weight: 700; }
+
+.places-error,
+.error-message,
+.profile-tab-error {
+  background: var(--nb-coral);
+  color: #fff;
+  border: var(--nb-border);
+  border-radius: var(--nb-radius);
+  padding: 0.85rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem 0;
+  box-shadow: var(--nb-shadow-sm);
+}
+
+/* ── Star Rating ─────────────────────────────────────────── */
+.star-rating { display: inline-flex; align-items: center; gap: 0.45rem; direction: ltr; }
+
+.star-rating__stars {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  font-size: 1rem;
+}
+
+.star-rating__track, .star-rating__fill { display: block; }
+.star-rating__track { color: rgba(0,0,0,0.15); }
+.star-rating__fill {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--nb-peach);
+}
+
+.star-rating__count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  direction: rtl;
+}
+
+.star-rating--sm .star-rating__stars { font-size: 0.85rem; }
+.star-rating--sm .star-rating__count { font-size: 0.75rem; }
+.star-rating--lg .star-rating__stars { font-size: 1.4rem; }
+.star-rating--lg .star-rating__count { font-size: 0.95rem; font-weight: 700; }

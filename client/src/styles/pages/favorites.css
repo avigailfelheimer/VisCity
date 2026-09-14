@@ -1,0 +1,603 @@
+/* ============================================================
+   FAVORITES PAGE – "המועדפים שלי" + תיקיות
+   בסגנון Neo-Brutalism של האתר (משתני --nb-* מ-places.css)
+   ============================================================ */
+
+.favorites-page {
+  direction: rtl;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  font-family: var(--nb-font);
+  color: var(--nb-black);
+  background: var(--nb-white);
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.favorites-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.favorites-header h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--nb-black);
+  letter-spacing: -0.5px;
+}
+
+.fav-heart-emoji {
+  display: inline-block;
+  animation: favHeartbeat 1.8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes favHeartbeat {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  15% { transform: scale(1.25) rotate(-8deg); }
+  30% { transform: scale(1) rotate(0deg); }
+  45% { transform: scale(1.2) rotate(8deg); }
+  60% { transform: scale(1) rotate(0deg); }
+}
+
+.favorites-header .muted {
+  color: var(--places-text-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ── Stats badges ────────────────────────────────────────── */
+.favorites-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.favorites-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--nb-yellow);
+  border: var(--nb-border-2);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  box-shadow: var(--nb-shadow-sm);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.favorites-stat:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--nb-shadow);
+}
+
+.favorites-stat--folders { background: var(--nb-sky); }
+
+.favorites-stat strong {
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+/* ── Empty state ─────────────────────────────────────────── */
+.fav-empty {
+  text-align: center;
+  padding: 3.5rem 2rem;
+  background: var(--nb-gray);
+  border: var(--nb-border);
+  border-radius: var(--nb-radius-lg);
+  box-shadow: var(--nb-shadow);
+  color: var(--places-text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.fav-empty::before {
+  content: '💔';
+  font-size: 3.5rem;
+  display: block;
+  animation: favFloat 3s ease-in-out infinite;
+}
+
+@keyframes favFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(-6deg); }
+}
+
+.fav-empty p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--nb-black);
+}
+
+.fav-empty--inline {
+  padding: 2.5rem 1.5rem;
+  font-size: 0.9rem;
+  box-shadow: var(--nb-shadow-sm);
+}
+
+.fav-empty--inline::before {
+  content: '📭';
+  font-size: 2.5rem;
+  animation: favFloat 3s ease-in-out infinite;
+}
+
+/* ── Layout: sidebar + content ──────────────────────────── */
+.favorites-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .favorites-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+.fav-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: var(--nb-white);
+  border: var(--nb-border);
+  border-radius: var(--nb-radius-lg);
+  padding: 1rem;
+  box-shadow: var(--nb-shadow);
+  position: sticky;
+  top: 1rem;
+}
+
+@media (max-width: 860px) {
+  .fav-sidebar {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .fav-sidebar__divider {
+    display: none;
+  }
+
+  .fav-folder-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .fav-folder-create,
+  .fav-add-folder-btn {
+    width: 100%;
+  }
+}
+
+.fav-sidebar__divider {
+  height: 2px;
+  background: var(--nb-black);
+  opacity: 0.1;
+  margin: 0.4rem 0;
+  border-radius: 2px;
+}
+
+/* ── Folder items (buttons / rows) ──────────────────────── */
+.fav-folder-item,
+.fav-folder-item__main {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  border: var(--nb-border-2);
+  border-color: transparent;
+  background: transparent;
+  color: var(--nb-black);
+  font-family: var(--nb-font);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: right;
+  padding: 0.55rem 0.7rem;
+  border-radius: var(--nb-radius);
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s, background 0.12s, border-color 0.12s;
+}
+
+.fav-folder-item:hover,
+.fav-folder-item__main:hover {
+  background: var(--nb-gray);
+  border-color: var(--nb-black);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--nb-shadow-sm);
+}
+
+.fav-folder-item--active,
+.fav-folder-row--active .fav-folder-item__main {
+  background: var(--nb-yellow);
+  border-color: var(--nb-black);
+  box-shadow: var(--nb-shadow-sm);
+}
+
+.fav-folder-item--dragover,
+.fav-folder-row--dragover {
+  border-color: var(--nb-black);
+  background: var(--nb-lime);
+  box-shadow: var(--nb-shadow-sm);
+  animation: favDragPulse 0.7s ease-in-out infinite;
+}
+
+@keyframes favDragPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.025); }
+}
+
+.fav-folder-item__icon {
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1.5px solid var(--nb-black);
+  background: var(--nb-yellow);
+}
+
+/* "ללא תיקייה" – צבע שונה */
+.fav-folder-item:nth-of-type(2) .fav-folder-item__icon {
+  background: var(--nb-sky);
+}
+
+/* תיקיות מותאמות – צבעים מתחלפים */
+.fav-folder-list .fav-folder-row:nth-child(4n+1) .fav-folder-item__icon { background: var(--nb-coral); }
+.fav-folder-list .fav-folder-row:nth-child(4n+2) .fav-folder-item__icon { background: var(--nb-mint); }
+.fav-folder-list .fav-folder-row:nth-child(4n+3) .fav-folder-item__icon { background: var(--nb-lavender); }
+.fav-folder-list .fav-folder-row:nth-child(4n+0) .fav-folder-item__icon { background: var(--nb-peach); }
+
+.fav-folder-item__name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fav-folder-item__count {
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: var(--nb-yellow);
+  background: var(--nb-black);
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  min-width: 1.5rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* ── Custom folder rows (with rename/delete) ────────────── */
+.fav-folder-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.fav-folder-row {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: var(--nb-radius);
+  border: var(--nb-border-2);
+  border-color: transparent;
+  transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+}
+
+.fav-folder-row .fav-folder-item__main {
+  padding: 0.55rem 0.7rem;
+}
+
+.fav-folder-row__actions {
+  display: flex;
+  gap: 0.15rem;
+  padding-left: 0.35rem;
+  flex-shrink: 0;
+}
+
+.fav-folder-action {
+  background: transparent;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0.35rem;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s, background 0.1s, border-color 0.1s;
+}
+
+.fav-folder-action:hover {
+  background: var(--nb-gray);
+  border-color: var(--nb-black);
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0 var(--nb-black);
+}
+
+.fav-folder-action--danger:hover {
+  background: var(--nb-coral);
+}
+
+.fav-folder-rename {
+  flex: 1;
+}
+
+.fav-folder-rename input {
+  width: 100%;
+  border: var(--nb-border-2);
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.9rem;
+  font-family: var(--nb-font);
+  font-weight: 600;
+  outline: none;
+  direction: rtl;
+}
+
+.fav-folder-rename input:focus {
+  box-shadow: var(--nb-shadow-sm);
+  transform: translate(-1px, -1px);
+}
+
+/* ── Create folder ───────────────────────────────────────── */
+.fav-add-folder-btn {
+  margin-top: 0.3rem;
+  background: var(--nb-white);
+  border: var(--nb-border-2);
+  border-style: dashed;
+  border-radius: var(--nb-radius);
+  color: var(--places-text-muted);
+  font-family: var(--nb-font);
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 0.6rem 0.7rem;
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s, background 0.12s, color 0.12s, border-style 0.12s;
+}
+
+.fav-add-folder-btn:hover {
+  border-style: solid;
+  border-color: var(--nb-black);
+  color: var(--nb-black);
+  background: var(--nb-lavender);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--nb-shadow-sm);
+}
+
+.fav-folder-create {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+}
+
+.fav-folder-create input {
+  flex: 1;
+  min-width: 0;
+  border: var(--nb-border-2);
+  border-radius: 6px;
+  padding: 0.45rem 0.6rem;
+  font-size: 0.85rem;
+  font-family: var(--nb-font);
+  font-weight: 600;
+  direction: rtl;
+  outline: none;
+}
+
+.fav-folder-create input:focus {
+  box-shadow: var(--nb-shadow-sm);
+  transform: translate(-1px, -1px);
+}
+
+.fav-folder-create__btn {
+  background: var(--nb-black);
+  color: var(--nb-yellow);
+  border: var(--nb-border-2);
+  border-radius: 6px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  font-family: var(--nb-font);
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s;
+  box-shadow: var(--nb-shadow-sm);
+}
+
+.fav-folder-create__btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--nb-shadow);
+}
+
+/* ── Content / Grid ──────────────────────────────────────── */
+.favorites-content {
+  min-height: 200px;
+}
+
+.fav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ── Favorite place card ────────────────────────────────── */
+.fav-place-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--nb-white);
+  border: var(--nb-border);
+  border-radius: var(--nb-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--nb-shadow);
+  transition: transform 0.12s, box-shadow 0.12s;
+  cursor: grab;
+}
+
+/* פס צבעוני מתחלף בראש הכרטיס */
+.fav-place-card:nth-child(4n+1) { border-top: 6px solid var(--nb-coral); }
+.fav-place-card:nth-child(4n+2) { border-top: 6px solid var(--nb-mint); }
+.fav-place-card:nth-child(4n+3) { border-top: 6px solid var(--nb-lavender); }
+.fav-place-card:nth-child(4n+0) { border-top: 6px solid var(--nb-peach); }
+
+.fav-place-card:active {
+  cursor: grabbing;
+}
+
+.fav-place-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--nb-shadow-lg);
+}
+
+/* תג "נוסף לאחרונה" */
+.fav-place-card__badge {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 3;
+  background: var(--nb-lime);
+  color: var(--nb-black);
+  font-size: 0.68rem;
+  font-weight: 900;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--nb-black);
+  box-shadow: var(--nb-shadow-sm);
+  white-space: nowrap;
+  animation: favBadgePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes favBadgePop {
+  from { transform: scale(0.4) rotate(-15deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.fav-place-card__media {
+  display: block;
+  width: 100%;
+  height: 150px;
+  background: var(--nb-gray);
+  overflow: hidden;
+  border-bottom: var(--nb-border-2);
+}
+
+.fav-place-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.fav-place-card:hover .fav-place-card__media img {
+  transform: scale(1.08);
+}
+
+.fav-place-card__emoji {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.6rem;
+  background: var(--nb-yellow);
+}
+
+.fav-place-card__body {
+  padding: 0.9rem 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fav-place-card__title {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--nb-black);
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.fav-place-card__title:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.fav-place-card__desc {
+  font-size: 0.82rem;
+  color: var(--places-text-muted);
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.fav-place-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem 0.9rem;
+  border-top: var(--nb-border-2);
+  margin-top: 0.5rem;
+}
+
+.fav-place-card__drag-hint {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--places-text-light);
+  white-space: nowrap;
+}
+
+.fav-folder-select {
+  flex: 1;
+  min-width: 0;
+  max-width: 140px;
+  border: var(--nb-border-2);
+  border-radius: 6px;
+  padding: 0.3rem 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--nb-font);
+  color: var(--nb-black);
+  background: var(--nb-white);
+  direction: rtl;
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.fav-folder-select:focus {
+  outline: none;
+  box-shadow: var(--nb-shadow-sm);
+  transform: translate(-1px, -1px);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .favorites-page { padding: 1.25rem 1rem 2rem; }
+  .favorites-header h1 { font-size: 1.6rem; }
+  .fav-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .fav-place-card__footer { flex-direction: column; align-items: stretch; }
+  .fav-folder-select { max-width: 100%; }
+}

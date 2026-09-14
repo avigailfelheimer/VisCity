@@ -1,0 +1,152 @@
+/* ============================================================
+   FAVORITE BUTTON – כפתור לב למועדפים (גנרי)
+   בסגנון Neo-Brutalism של האתר (משתני --nb-* מ-places.css)
+   עם ערכי גיבוי, כדי שיעבוד גם אם נטען בעמוד שאינו טוען places.css.
+   ============================================================ */
+
+.favorite-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  flex-shrink: 0;
+  border: var(--nb-border-2, 2px solid #1A1A2E);
+  background: var(--nb-white, #FFFEF7);
+  color: var(--nb-black, #1A1A2E);
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--nb-font, inherit);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, color 0.12s ease;
+  box-shadow: var(--nb-shadow-sm, 3px 3px 0 #1A1A2E);
+}
+
+.favorite-btn:hover {
+  color: #fff;
+  background: var(--nb-coral, #FF6B6B);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--nb-shadow, 5px 5px 0 #1A1A2E);
+}
+
+.favorite-btn:active {
+  transform: translate(0, 0) scale(0.92);
+  box-shadow: var(--nb-shadow-sm, 3px 3px 0 #1A1A2E);
+}
+
+.favorite-btn--active {
+  color: #fff;
+  background: var(--nb-coral, #FF6B6B);
+}
+
+.favorite-btn--active:hover {
+  background: var(--nb-black, #1A1A2E);
+}
+
+.favorite-btn__icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  transition: transform 0.18s ease, fill 0.18s ease;
+}
+
+.favorite-btn--active .favorite-btn__icon {
+  fill: currentColor;
+  animation: favHeartPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes favHeartPop {
+  0%   { transform: scale(0.6); }
+  50%  { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+.favorite-btn:active .favorite-btn__icon {
+  transform: scale(0.8);
+}
+
+/* ── גדלים ───────────────────────────────────────────────── */
+.favorite-btn--sm {
+  width: 36px;
+  height: 36px;
+}
+
+.favorite-btn--sm .favorite-btn__icon {
+  width: 17px;
+  height: 17px;
+}
+
+/* lg – עם תווית טקסט, לעמוד הפוסט המלא */
+.favorite-btn--lg {
+  width: auto;
+  height: auto;
+  padding: 0.65rem 1.25rem;
+  border: var(--nb-border, 3px solid #1A1A2E);
+  border-radius: var(--nb-radius, 12px);
+  font-size: 0.9rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.favorite-btn--lg:hover {
+  box-shadow: var(--nb-shadow, 5px 5px 0 #1A1A2E);
+}
+
+.favorite-btn--lg .favorite-btn__icon {
+  width: 19px;
+  height: 19px;
+}
+
+.favorite-btn__label {
+  line-height: 1;
+}
+
+/* ── מיקום מעל תמונת כרטיס (overlay) ────────────────────────── */
+.favorite-btn--overlay {
+  position: absolute;
+  top: 0.65rem;
+  left: 0.65rem;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--nb-shadow-sm, 3px 3px 0 #1A1A2E);
+}
+
+/* ── טולטיפ בריחוף ("הוסף למועדפים") ───────────────────────── */
+.favorite-btn__tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--nb-black, #1A1A2E);
+  color: var(--nb-yellow, #FFE135);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  border: 1.5px solid var(--nb-black, #1A1A2E);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 6;
+}
+
+.favorite-btn__tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--nb-black, #1A1A2E);
+}
+
+.favorite-btn:hover .favorite-btn__tooltip,
+.favorite-btn:focus-visible .favorite-btn__tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

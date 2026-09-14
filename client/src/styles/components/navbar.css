@@ -1,0 +1,236 @@
+/* ============================================================
+   NAVBAR – Neo-Brutalism Style
+   ============================================================ */
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 24px;
+  height: 70px;
+  background: #FFE135;
+  border-bottom: 3px solid #1A1A2E;
+  box-shadow: 0 3px 0 #1A1A2E;
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  font-family: 'Trebuchet MS', 'Segoe UI', system-ui, sans-serif;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Logo */
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav-logo {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.2s ease;
+  filter: drop-shadow(2px 2px 0 #1A1A2E);
+}
+
+.logo-wrap:hover .nav-logo {
+  transform: scale(1.06) rotate(-2deg);
+}
+
+/* Nav Links */
+.nav-link {
+  text-decoration: none;
+  color: #1A1A2E;
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s, box-shadow 0.1s;
+  display: inline-block;
+}
+
+.nav-link:hover {
+  background: #1A1A2E;
+  color: #FFE135;
+  border-color: #1A1A2E;
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0 #1A1A2E;
+}
+
+.nav-link.active {
+  background: #1A1A2E;
+  color: #FFE135;
+  border-color: #1A1A2E;
+  box-shadow: 2px 2px 0 #1A1A2E;
+}
+
+/* Auth links */
+.auth-link {
+  text-decoration: none;
+  color: #1A1A2E;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  border: 2.5px solid #1A1A2E;
+  background: #fff;
+  transition: transform 0.1s, box-shadow 0.1s;
+  display: inline-block;
+  box-shadow: 3px 3px 0 #1A1A2E;
+}
+
+.auth-link:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #1A1A2E;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  background: #1A1A2E;
+  border: 2px solid #1A1A2E;
+  color: #FFE135;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+  transition: transform 0.1s;
+}
+
+.hamburger:hover {
+  transform: translate(-1px, -1px);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  position: relative;
+}
+
+.mobile-menu-pop {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  background: #FFE135;
+  border: 3px solid #1A1A2E;
+  box-shadow: 5px 5px 0 #1A1A2E;
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 180px;
+  z-index: 200;
+}
+
+/* User Area */
+.user-area {
+  position: relative;
+}
+
+.user-btn {
+  background: #1A1A2E;
+  border: 2.5px solid #1A1A2E;
+  color: #FFE135;
+  font-weight: 800;
+  font-size: 0.88rem;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 0.45rem 1rem;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.25);
+  transition: transform 0.1s, box-shadow 0.1s;
+  font-family: inherit;
+}
+
+.user-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+}
+
+.dropdown-menu {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 10px);
+  background: #FFFEF7;
+  border: 3px solid #1A1A2E;
+  box-shadow: 5px 5px 0 #1A1A2E;
+  border-radius: 12px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 200px;
+  z-index: 200;
+}
+
+.dropdown-item {
+  text-decoration: none;
+  color: #1A1A2E;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  text-align: right;
+  transition: background 0.12s;
+  display: block;
+}
+
+.dropdown-item:hover {
+  background: #FFE135;
+}
+
+.dropdown-item.active {
+  background: #1A1A2E;
+  color: #FFE135;
+}
+
+.dropdown-item.danger {
+  color: #e53e3e;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: right;
+  width: 100%;
+  font-family: inherit;
+}
+
+.dropdown-item.danger:hover {
+  background: #FFF0F0;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .nav-center { display: none; }
+  .hamburger { display: flex; }
+
+  .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+
+  .nav-logo { height: 44px; }
+
+  .top-nav { padding: 0 16px; }
+}

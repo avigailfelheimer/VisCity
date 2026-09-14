@@ -1,0 +1,292 @@
+/* ============================================================
+   AUTH PAGES – Login / Register / Admin Login
+   Neo-Brutalism Design System | RTL-first
+   ============================================================ */
+
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  background: var(--nb-white);
+  font-family: var(--nb-font);
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-page::before,
+.auth-page::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.auth-page::before {
+  width: 320px;
+  height: 320px;
+  background: var(--nb-mint);
+  top: -120px;
+  inset-inline-end: -120px;
+}
+
+.auth-page::after {
+  width: 260px;
+  height: 260px;
+  background: var(--nb-lavender);
+  bottom: -100px;
+  inset-inline-start: -100px;
+}
+
+/* ── Card ── */
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--nb-white);
+  border: var(--nb-border);
+  border-radius: var(--nb-radius-lg);
+  padding: 2.5rem 2.5rem 2rem;
+  box-shadow: var(--nb-shadow-lg);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  direction: rtl;
+}
+
+.auth-card--admin {
+  border-top: 8px solid var(--nb-black);
+  background: var(--nb-gray);
+}
+
+/* ── Header ── */
+.auth-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.auth-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 0.75rem;
+  font-size: 32px;
+  line-height: 1;
+  background: var(--nb-yellow);
+  border: var(--nb-border-2);
+  border-radius: 50%;
+  box-shadow: var(--nb-shadow-sm);
+}
+
+.auth-title {
+  font-size: 1.75rem !important;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  margin: 0 0 0.4rem !important;
+  color: var(--nb-black);
+}
+
+.auth-subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ── Form ── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: right;
+}
+
+.form-field label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--nb-black);
+}
+
+.form-field input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: var(--nb-border);
+  border-radius: var(--nb-radius);
+  background: var(--nb-white);
+  color: var(--nb-black);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  outline: none;
+  transition: transform 0.12s, box-shadow 0.12s;
+  box-sizing: border-box;
+  direction: ltr;
+  text-align: left;
+}
+
+.form-field input::placeholder {
+  color: var(--text-light);
+  font-weight: 400;
+}
+
+.form-field input:focus {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--nb-shadow-sm);
+}
+
+.form-field input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-field input.input-error {
+  border-color: var(--nb-coral);
+}
+
+.form-field input.input-error:focus {
+  box-shadow: 3px 3px 0 var(--nb-coral);
+}
+
+/* ── Field-level error ── */
+.field-error {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--nb-coral);
+  text-align: right;
+}
+
+/* ── Server / global error banner ── */
+.auth-error {
+  background: var(--nb-coral);
+  color: #fff;
+  border: var(--nb-border-2);
+  border-radius: var(--nb-radius);
+  padding: 0.7rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: var(--nb-shadow-sm);
+}
+
+/* ── Submit button ── */
+.auth-btn {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 0.25rem;
+  background: var(--nb-black);
+  color: var(--nb-yellow);
+  border: var(--nb-border);
+  border-radius: var(--nb-radius);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: var(--nb-shadow-sm);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.auth-btn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--nb-shadow);
+}
+
+.auth-btn:active:not(:disabled) {
+  transform: translate(0, 0);
+  box-shadow: var(--nb-shadow-sm);
+}
+
+.auth-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.auth-btn--admin {
+  background: var(--nb-black);
+  color: var(--nb-sky);
+}
+
+/* ── Loading spinner (inside button) ── */
+.btn-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255, 255, 255, 0.35);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+}
+
+/* ── Footer switch link ── */
+.auth-switch {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.auth-switch a {
+  color: var(--nb-coral);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Secondary admin-login link ── */
+.auth-admin-link {
+  display: block;
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-light);
+  text-decoration: none;
+}
+
+.auth-admin-link:hover {
+  color: var(--nb-black);
+  text-decoration: underline;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 2rem 1.5rem 1.5rem;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    max-width: 100%;
+    box-shadow: none;
+    border-top: var(--nb-border);
+    border-bottom: var(--nb-border);
+  }
+
+  .auth-card--admin { border-top: 8px solid var(--nb-black); }
+
+  .auth-title {
+    font-size: 1.5rem !important;
+  }
+
+  .auth-page::before,
+  .auth-page::after {
+    display: none;
+  }
+}
