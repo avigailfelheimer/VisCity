@@ -631,4 +631,3 @@ VisCity-project/
 
 ---
 
-<p align="center">Built with ❤️ by <a href="https://github.com/SaritNerya">Sarit Nerya</a></p>
